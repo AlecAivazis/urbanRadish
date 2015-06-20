@@ -1,4 +1,3 @@
-
 'use strict'
 
 // third party imports
@@ -14,8 +13,10 @@ import {
 let menu = [
     {
         title: 'sandwhich',
+        image: 'http://thumbs.dreamstime.com/x/large-turkey-sandwhich-20077936.jpg',
     }, {
         title: 'pizza',
+        image: 'http://richthediabetic.com/wp-content/uploads/2013/07/Pizza.jpg',
     }
 
 ]
@@ -27,9 +28,7 @@ class UrbanRadishRoot extends React.Component {
         super()
         // set the initial state
         this.state = {
-            menuItems: new ListView.DataSource({
-                rowHasChanged: (row1, row2) => row1 !== row2,
-            }),
+            menuItems: new ListView.DataSource({ rowHasChanged: (row1, row2) => row1 !== row2, }),
         }
         this.loadMenuItems = this.loadMenuItems.bind(this)
     }
