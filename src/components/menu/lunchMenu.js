@@ -21,7 +21,7 @@ let menu = [
 
 ]
 
-class UrbanRadishRoot extends React.Component {
+class LunchMenu extends React.Component {
 
     constructor() {
         // instantiate this
@@ -51,9 +51,19 @@ class UrbanRadishRoot extends React.Component {
     // render a menu item
     renderMenuItem(item) {
         return (
-            <MenuItem item={item}/>
+            <MenuItem item={item} />
         )
     } 
+
+    renderSectionHeader(item) {
+        return (
+          <View >
+            <Text>
+              {item.title}
+            </Text>
+          </View>
+        )
+    }
 
 
     // render the component
@@ -62,19 +72,20 @@ class UrbanRadishRoot extends React.Component {
             <ListView
                 dataSource={this.state.menuItems}
                 renderRow={this.renderMenuItem} 
-                style={styles.container}/>
+                renderSectionHeader={section => this.renderSectionHeader(section)}
+                style={styles.container}
+            />
         )
     }
 }
 
 let styles = StyleSheet.create({
     container: {
-        paddingTop: 20,
+        flex: 1,
     }
 })
 
-
-export default UrbanRadishRoot
+export default LunchMenu
 
 
 // end of file

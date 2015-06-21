@@ -2,30 +2,43 @@
 'use strict'
 
 // third party imports
-import React from 'react-native'
-import LunchMenu from './menu/lunchMenu.js'
+import { TabBarIOS, NavigatorIOS, View } from 'react-native'
+import StyleSheet from 'react-style'
+import LunchMenu from './menu/lunchMenu'
+
+
+'use strict'
+
+// third party imports
+import React from 'react/addons'
 
 
 class UrbanRadishRoot extends React.Component {
-
-    constructor() {
-        // instantiate this
-        super()
-        // set the initial state
-        this.state = {}
-    }
-
-
     // render the component
     render() {
         return (
-            <LunchMenu />
+            <NavigatorIOS 
+                style={styles.container}
+                initialRoute={{ 
+                    title: 'Lunch Menu', 
+                    component:LunchMenu 
+                }} 
+            />
         )
     }
 }
 
 
+
+let styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    }
+})
+
+
 export default UrbanRadishRoot
+
 
 
 // end of file

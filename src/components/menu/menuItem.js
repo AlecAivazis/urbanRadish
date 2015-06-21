@@ -31,7 +31,7 @@ class MenuItem extends React.Component {
             quantity: this.state.quantity + 1
         })
     }
-    
+
 
     show_detail() {
         this.setState({
@@ -42,6 +42,7 @@ class MenuItem extends React.Component {
 
     // render the component
     render() {
+        console.log('rendering menu item')
         let item = this.props.item
         return (
             <TouchableOpacity onPress={this.incrementQuantity}>
