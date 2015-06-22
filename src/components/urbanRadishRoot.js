@@ -21,8 +21,9 @@ class UrbanRadishRoot extends React.Component {
                 style={styles.container}
                 initialRoute={{ 
                     title: 'Lunch Menu', 
-                    component:LunchMenu 
+                    component: LunchMenu,
                 }} 
+                passProps= {{navigator: this}}
             />
         )
     }

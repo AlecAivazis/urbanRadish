@@ -9,43 +9,39 @@ import {
     Image,
     TouchableOpacity
 } from 'react-native'
+import ItemDetail from './itemDetail'
 
 
 class MenuItem extends React.Component {
 
-    constructor() {
+    constructor(props) {
         // instantiate this
-        super()
+        super(props)
         // set the initial state
         this.state = {
             quantity: 0
         }
-        this.incrementQuantity = this.incrementQuantity.bind(this)
-        this.show_detail = this.show_detail.bind(this)
+        this.show_item_detail = this.show_item_detail.bind(this)
+        this.add_item_to_cart = this.add_item_to_cart.bind(this)
     }
 
 
     // increment the quantity of the item 
-    incrementQuantity() {
-        this.setState({
-            quantity: this.state.quantity + 1
-        })
+    show_item_detail() {
+        console.log(this.props.navigator)
     }
 
 
-    show_detail() {
-        this.setState({
-            quantity: this.state.quantity + 3
-        })
-    }
+    add_item_to_cart() {
+        console.log('adding item to cart')
+   }
 
 
     // render the component
     render() {
-        console.log('rendering menu item')
         let item = this.props.item
         return (
-            <TouchableOpacity onPress={this.incrementQuantity}>
+            <TouchableOpacity onPress={this.show_item_detail}>
                 <View style={styles.menu_item} >
                     <Image
                         source={{uri: item.image}}
@@ -54,8 +50,8 @@ class MenuItem extends React.Component {
                     <Text style={styles.description}>
                         {item.title}
                     </Text>
-                    <TouchableOpacity onPress={this.show_detail}>
-                        <Text style={styles.quantity}> {this.state.quantity} </Text>
+                    <TouchableOpacity onPress={this.add_item_to_cart}>
+                        <Text style={styles.add_item_to_cart}> + </Text>
                     </TouchableOpacity>
                 </View>
             </TouchableOpacity>
@@ -79,7 +75,7 @@ let styles = StyleSheet.create({
         flex: 1,
         textAlign: 'center',
     },
-    quantity:{
+    add_item_to_cart:{
         paddingLeft: 10,
         paddingRight: 10,
         textAlign: 'center',

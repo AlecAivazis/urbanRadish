@@ -23,14 +23,15 @@ let menu = [
 
 class LunchMenu extends React.Component {
 
-    constructor() {
+    constructor(props) {
         // instantiate this
-        super()
+        super(props)
         // set the initial state
         this.state = {
             menuItems: new ListView.DataSource({ rowHasChanged: (row1, row2) => row1 !== row2, }),
         }
         this.loadMenuItems = this.loadMenuItems.bind(this)
+        this.renderMenuItem = this.renderMenuItem.bind(this)
     }
 
 
@@ -51,19 +52,9 @@ class LunchMenu extends React.Component {
     // render a menu item
     renderMenuItem(item) {
         return (
-            <MenuItem item={item} />
+            <MenuItem item={item} navigator={this.props.navigator} />
         )
     } 
-
-    renderSectionHeader(item) {
-        return (
-          <View >
-            <Text>
-              {item.title}
-            </Text>
-          </View>
-        )
-    }
 
 
     // render the component
@@ -72,18 +63,11 @@ class LunchMenu extends React.Component {
             <ListView
                 dataSource={this.state.menuItems}
                 renderRow={this.renderMenuItem} 
-                renderSectionHeader={section => this.renderSectionHeader(section)}
-                style={styles.container}
             />
         )
     }
 }
 
-let styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    }
-})
 
 export default LunchMenu
 
