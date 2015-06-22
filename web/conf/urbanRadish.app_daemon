@@ -1,0 +1,27 @@
+# Start up script for the urbanRadish application server
+
+description "urbanRadish daemon for Django project"
+
+start on (local-filesystems and net-device-up IFACE=eth0)
+stop on runlevel [!12345]
+
+# If the process quits unexpectadly trigger a respawn
+respawn
+
+# set the user and group of the process to the user matching the project
+setuid urbanRadish
+setgid urbanRadish
+
+# navigate to the directory with the project
+chdir /home/projects/urbanRadish
+
+# start the server
+exec gunicorn \
+    --name=urbanRadish \
+    --pythonpath=repository \
+    --bind=127.0.0.1:9000 \
+    conf.wsgi
+    #--config /etc/gunicorn.d/gunicorn.py \
+
+
+## end of file ##
